@@ -66,4 +66,4 @@ def full_description_formatting(first_name, last_name, age):
     """
     first_name=first_name.capitalize()
     last_name=last_name.capitalize()
-    return (f"{first_name} {last_name} is {age}")
+    return f"{first_name} {last_name} is {age}"
