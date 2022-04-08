@@ -12,7 +12,7 @@ def students_from_city(db, city):
 #   => Uncomment the following lines + run:
 #   $ python school.py
 #
-import sqlite3
-conn = sqlite3.connect('data/school.sqlite')
-db = conn.cursor()
-print(students_from_city(db, 'Paris'))
+#import sqlite3
+#conn = sqlite3.connect('data/school.sqlite')
+#db = conn.cursor()
+#print(students_from_city(db, 'Paris'))
