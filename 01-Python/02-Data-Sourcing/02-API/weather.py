@@ -1,20 +1,21 @@
 # pylint: disable=missing-module-docstring
 
 import sys
-import urllib.parse
 import requests
 
 BASE_URI = "https://www.metaweather.com"
 
 
 def search_city(query):
-    '''Look for a given city and disambiguate between several candidates. Return one city (or None)'''
+    '''Look for a given city and disambiguate between several candidates.
+    Return one city (or None)'''
     url = "https://www.metaweather.com/api/location/search/?query="+query
     response = requests.get(url).json()
     if response and len(response)>0:
         city = response[0]
         return city
     print('City not found')
+    return None
 
 def weather_forecast(woeid):
     '''Return a 5-element list of weather forecast for a given woeid'''
@@ -23,11 +24,11 @@ def weather_forecast(woeid):
     consolidated_weather=response['consolidated_weather']
     result=[]
     for weather in consolidated_weather:
-        d={}
-        d['applicable_date']=weather['applicable_date']
-        d['weather_state_name']=weather['weather_state_name']
-        d['max_temp']=weather['max_temp']
-        result.append(d)
+        day_weather={}
+        day_weather['applicable_date']=weather['applicable_date']
+        day_weather['weather_state_name']=weather['weather_state_name']
+        day_weather['max_temp']=weather['max_temp']
+        result.append(day_weather)
     return result
 
 
@@ -38,9 +39,9 @@ def main():
     city = search_city(query)
     if city:
         woeid=city['woeid']
-        x=weather_forecast(woeid)
+        days=weather_forecast(woeid)
         print("Here's the weather in " + query)
-        for day in x:
+        for day in days:
             print(str(day['applicable_date'])+ ":",
                   day['weather_state_name'],
                   str(day['max_temp'])+ "°C")
