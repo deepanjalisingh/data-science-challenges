@@ -1,7 +1,11 @@
+#https://www.hackerrank.com/challenges/np-mean-var-and-std/problem
+
 import numpy
+
 arr=input().split(' ')
 n=int(arr[0])
 m=int(arr[1])
+
 list=[]
 for i in range(0,n):
     arr=input().split(' ')
